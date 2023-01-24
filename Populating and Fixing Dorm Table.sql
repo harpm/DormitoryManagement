@@ -11,7 +11,7 @@ ALTER TABLE Dorm
 
 GO
 
--- Type: 0 => normal, 1 => locked, 2 => Married, 3 => StaffOnly
+-- Type: 0 => Boys, 1 => Girls, 2 => Married, 3 => StaffOnly
 INSERT INTO [dbo].Dorm (Capacity, NumberOfRooms, [Type], [Address], Possibilities)
 VALUES (150, 30, 3, N'بلوار شهید احمدی', N'D')
 
