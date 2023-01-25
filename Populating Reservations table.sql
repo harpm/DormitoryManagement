@@ -5,8 +5,6 @@ GO
 DECLARE @BoyRooms TABLE(RoomID INT);
 INSERT INTO @BoyRooms SELECT R.RoomID FROM [dbo].Room AS R INNER JOIN [dbo].Dorm AS D ON R.DormID = D.DormID WHERE D.Type = 0;
 
-select * From @BoyRooms
-
 DECLARE @GirlRooms TABLE(RoomID INT);
 INSERT INTO @GirlRooms SELECT RoomID FROM [dbo].Room AS R INNER JOIN [dbo].Dorm AS D ON R.DormID = D.DormID WHERE D.Type = 1;
 
