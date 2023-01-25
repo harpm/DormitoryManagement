@@ -2,15 +2,17 @@ USE [DormitoryManagement]
 
 GO
 
-DECLARE @BoyRooms = SELECT RoomID FROM [dbo].Room AS R INNER JOIN [dbo].Dorm AS D ON R.DormID = D.DormID WHERE D.Type = 0;
+DECLARE @BoyRooms TABLE(RoomID INT);
+INSERT INTO @BoyRooms SELECT R.RoomID FROM [dbo].Room AS R INNER JOIN [dbo].Dorm AS D ON R.DormID = D.DormID WHERE D.Type = 0;
 
-GO
+select * From @BoyRooms
 
-DECLARE @GirlRooms = SELECT RoomID FROM [dbo].Room AS R INNER JOIN [dbo].Dorm AS D ON R.DormID = D.DormID WHERE D.Type = 1;
+DECLARE @GirlRooms TABLE(RoomID INT);
+INSERT INTO @GirlRooms SELECT RoomID FROM [dbo].Room AS R INNER JOIN [dbo].Dorm AS D ON R.DormID = D.DormID WHERE D.Type = 1;
 
-GO
 
-DECLARE @CurID SELECT TOP (1) RoomID FROM @BoyRooms ORDER BY NEWID();
+DECLARE @CurID INT;
+SELECT TOP (1) @CurID = RoomID FROM @BoyRooms ORDER BY NEWID();
 DELETE @BoyRooms WHERE RoomID = @CurID
 
 INSERT INTO [dbo].Reservations(RoomID, StudentID, ReturningTheRoom, Caption)
@@ -22,9 +24,8 @@ VALUES (@CurID, 2, DATEADD(month, 5, getdate()), N'')
 INSERT INTO [dbo].Reservations(RoomID, StudentID, ReturningTheRoom, Caption)
 VALUES (@CurID, 8, DATEADD(month, 5, getdate()), N'')
 
-GO
 
-DECLARE @CurID SELECT TOP (1) RoomID FROM @BoyRooms ORDER BY NEWID();
+SELECT TOP (1) @CurID = RoomID FROM @BoyRooms ORDER BY NEWID();
 DELETE @BoyRooms WHERE RoomID = @CurID
 
 INSERT INTO [dbo].Reservations(RoomID, StudentID, ReturningTheRoom, Caption)
@@ -33,9 +34,7 @@ VALUES (@CurID, 9, DATEADD(month, 5, getdate()), N'')
 INSERT INTO [dbo].Reservations(RoomID, StudentID, ReturningTheRoom, Caption)
 VALUES (@CurID, 12, DATEADD(month, 5, getdate()), N'')
 
-GO
-
-DECLARE @CurID SELECT TOP (1) RoomID FROM @GirlRooms ORDER BY NEWID();
+SELECT TOP (1) @CurID = RoomID FROM @GirlRooms ORDER BY NEWID();
 DELETE @GirlRooms WHERE RoomID = @CurID
 
 INSERT INTO [dbo].Reservations(RoomID, StudentID, ReturningTheRoom, Caption)
@@ -47,9 +46,7 @@ VALUES (@CurID, 4, DATEADD(month, 5, getdate()), N'')
 INSERT INTO [dbo].Reservations(RoomID, StudentID, ReturningTheRoom, Caption)
 VALUES (@CurID, 5, DATEADD(month, 5, getdate()), N'')
 
-GO
-
-DECLARE @CurID SELECT TOP (1) RoomID FROM @GirlRooms ORDER BY NEWID();
+SELECT TOP (1) @CurID = RoomID FROM @GirlRooms ORDER BY NEWID();
 DELETE @GirlRooms WHERE RoomID = @CurID
 
 INSERT INTO [dbo].Reservations(RoomID, StudentID, ReturningTheRoom, Caption)
