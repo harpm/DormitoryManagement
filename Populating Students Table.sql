@@ -18,7 +18,7 @@ VALUES('Fatemeh', 'Hassanzadeh', '1253781568', 09695883006, N'خیابان فر�
 GO
 
 INSERT INTO [dbo].Student(FirstName, LastName, NationalCode, PhoneNumber, [Address])
-VALUES('زهرا', 'حمید نژاد', '1254781578', 09695884506, N'خیابان فروغی')
+VALUES(N'زهرا', N'حمید نژاد', '1254781578', 09695884506, N'خیابان فروغی')
 
 GO
 
